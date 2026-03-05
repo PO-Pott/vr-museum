@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>VR Galerie mit Teleport & Glasdach</title>
+  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
+</head>
+
+<body>
+<a-scene background="color: #111">
+
+  <!-- Assets -->
+  <a-assets>
+    <img id="bild1" src="foto1.jpeg">
+    <img id="bild2" src="foto2.jpeg">
+    <img id="bild3" src="foto3.jpeg">
+    <img id="bild4" src="foto4.jpeg">
+  </a-assets>
+
+  <!-- Licht -->
+  <a-light type="ambient" intensity="0.7"></a-light>
+  <a-light type="directional" color="#ffffff" intensity="0.5" position="0 10 0"></a-light>
+
+  <!-- Boden -->
+  <a-plane rotation="-90 0 0" width="20" height="20" color="#5a3e2b"></a-plane>
+
+  <!-- Wände -->
+  <a-box position="0 2 -6" width="12" height="4" depth="0.2" color="#dddddd"></a-box>
+  <a-box position="0 2 6" width="12" height="4" depth="0.2" color="#eeeeee"></a-box>
+  <a-box position="-6 2 0" width="0.2" height="4" depth="12" color="#cccccc"></a-box>
+  <a-box position="6 2 0" width="0.2" height="4" depth="12" color="#eeeeee"></a-box>
+
+  <!-- Glasdach -->
+  <a-box position="0 4 0" width="12" height="0.1" depth="12" 
+         color="#aeefff" opacity="0.3" material="roughness:0.1; metalness:0"></a-box>
+
+  <!-- Bilder + Rahmen -->
+  <a-entity position="-3 2 -5.9">
+    <a-box depth="0.1" width="3.2" height="2.2" position="0 0 -0.02" color="#000"></a-box>   
+    <a-plane src="#bild1" width="3" height="2" position="0 0 0.05"></a-plane>
+    <a-light type="spot" position="-3 4 -5.5" rotation="-75 0 0" intensity="1.2" angle="40"></a-light>
+  </a-entity>
+
+  <a-entity position="3 2 -5.9">
+    <a-box depth="0.1" width="3.2" height="2.2" position="0 0 -0.02" color="#000"></a-box>  
+    <a-plane src="#bild2" width="3" height="2" position="0 0 0.05"></a-plane>
+    <a-light type="spot" position="3 4 -5.5" rotation="-75 0 0" intensity="1.2" angle="40"></a-light>
+  </a-entity>
+
+  <a-entity position="-3 2 5.9" rotation="0 180 0">
+    <a-box depth="0.1" width="3.2" height="2.2" position="0 0 -0.02" color="#000"></a-box>
+    <a-plane src="#bild3" width="3" height="2" position="0 0 0.05"></a-plane>
+    <a-light type="spot" position="-3 4 5.5" rotation="-105 0 0" intensity="1.2" angle="40"></a-light>
+  </a-entity>
+
+  <a-entity position="3 2 5.9" rotation="0 180 0">
+    <a-box depth="0.1" width="3.2" height="2.2" position="0 0 -0.02" color="#000"></a-box>
+    <a-plane src="#bild4" width="3" height="2" position="0 0 0.05"></a-plane>
+    <a-light type="spot" position="3 4 5.5" rotation="-105 0 0" intensity="1.2" angle="40"></a-light>
+  </a-entity>
+
+  <!-- Boden-Spotlights für Akzent -->
+  <a-light type="spot" position="-3 3 -4" rotation="-45 0 0" angle="30" intensity="1"></a-light>
+  <a-light type="spot" position="3 3 -4" rotation="-45 0 0" angle="30" intensity="1"></a-light>
+  <a-light type="spot" position="-3 3 4" rotation="-45 180 0" angle="30" intensity="1"></a-light>
+  <a-light type="spot" position="3 3 4" rotation="-45 180 0" angle="30" intensity="1"></a-light>
+
+  <!-- Teleport-Fläche -->
+  <a-plane id="navmesh" rotation="-90 0 0" width="20" height="20" visible="false"></a-plane>
+
+  <!-- Teleport Kamera Rig -->
+  <a-entity id="rig" movement-controls="constrainToNavMesh: true">
+    <a-camera position="0 1.6 3" look-controls></a-camera>
+    <a-entity id="leftHand" hand-controls="hand: left" 
+              teleport-controls="button: trigger; collisionEntities: #navmesh; cameraRig: #rig">
+    </a-entity>
+    <a-entity id="rightHand" hand-controls="hand: right" 
+              teleport-controls="button: trigger; collisionEntities: #navmesh; cameraRig: #rig">
+    </a-entity>
+  </a-entity>
+
+</a-scene>
+</body>
+</html>
