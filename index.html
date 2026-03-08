@@ -56,9 +56,25 @@ material="color:#dff6ff; opacity:0.25; transparent:true">
 <!-- Bilder -->
 
 <a-entity position="-3 2 -5.9">
+  <!-- Rahmen & Bild -->
+  <a-box depth="0.1" width="3.2" height="2.2" position="0 0 -0.02" color="#000"></a-box>
+  <a-plane src="#bild1" width="3" height="2" position="0 0 0.05"></a-plane>
+
+  <!-- unsichtbarer Trigger für Info -->
+  <a-box class="info-trigger" position="0 0 0.06" width="3" height="2" depth="0.1" opacity="0" 
+         event-set__click="_event: click; _target: #info-text1; visible: true;">
+  </a-box>
+
+  <!-- Text-Entity, zuerst unsichtbar -->
+  <a-text id="info-text1" value="Bild 1: Mona Lisa\nLeonardo da Vinci\n1503" 
+          color="#fff" position="0 1.5 0.1" visible="false" width="2">
+  </a-text>
+</a-entity>
+
+<!--<a-entity position="-3 2 -5.9">
 <a-box depth="0.1" width="3.2" height="2.2" position="0 0 -0.02" color="#000"></a-box>
 <a-plane src="#bild1" width="3" height="2" position="0 0 0.05"></a-plane>
-</a-entity>
+</a-entity> -->
 
 <a-entity position="3 2 -5.9">
 <a-box depth="0.1" width="3.2" height="2.2" position="0 0 -0.02" color="#000"></a-box>
