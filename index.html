@@ -11,7 +11,7 @@
 
 <body>
 
-<a-scene background="color: #1a1a1a">
+<a-scene background="color: #1a1a1a" shadow="type: pcfsoft">
 
 <!-- Assets -->
 <a-assets>
@@ -23,7 +23,7 @@
 
 <!-- Licht -->
 <a-light type="ambient" intensity="0.8"></a-light>
-<a-light type="directional" intensity="0.6" position="0 8 0"></a-light>
+<a-light type="directional" intensity="0.7" position="0 8 2" castShadow="true"></a-light>
 
 <!-- Boden -->
 <a-plane
@@ -83,36 +83,19 @@ material="color:#dff6ff; opacity:0.25; transparent:true">
 <a-light type="spot" position="-3 3 4" rotation="-60 180 0" angle="30" intensity="1"></a-light>
 <a-light type="spot" position="3 3 4" rotation="-60 180 0" angle="30" intensity="1"></a-light>
 
-<!-- Teleportfläche -->
-
-<a-plane
-id="navmesh"
-class="teleport"
-rotation="-90 0 0"
-width="20"
-height="20"
-color="#00ff00"
-opacity="0.2">
-</a-plane>
-
 <!-- Kamera Rig -->
 
-<a-entity id="rig" position="0 0 3">
+<a-entity id="rig" movement-controls="speed: 0.15">
 
-<a-camera position="0 1.6 0"></a-camera>
+<a-entity camera position="0 1.6 3" look-controls wasd-controls></a-entity>
 
 <a-entity
-laser-controls="hand: left"
-raycaster="objects: .teleport"
-teleport-controls="cameraRig: #rig; teleportOrigin: #rig; button: trigger">
+oculus-touch-controls="hand: left"
+thumbstick-controls="movementSpeed: 0.15">
 </a-entity>
 
-
 <a-entity
-laser-controls="hand: right"
-raycaster="objects: .teleport"
-teleport-controls="cameraRig: #rig; teleportOrigin: #rig"
-teleport-controls="cameraRig: #rig; teleportOrigin: #rig; button: trigger">
+oculus-touch-controls="hand: right">
 </a-entity>
 
 </a-entity>
