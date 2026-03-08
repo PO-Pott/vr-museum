@@ -96,7 +96,7 @@ opacity="0.2">
 
 <!-- Kamera Rig -->
 
-<a-entity id="rig" movement-controls="speed: 1.0">
+<a-entity id="rig">
 
 <a-entity camera position="0 1.6 3" look-controls wasd-controls></a-entity>
 
@@ -106,9 +106,11 @@ raycaster="objects: .teleport"
 teleport-controls="cameraRig: #rig; teleportOrigin: #rig"; button: trigger>
 </a-entity>
 
-<a-entity
+<a-entity meta-touch-controls="hand: right"></a-entity>
+
+<!--<a-entity
     oculus-touch-controls="hand: right">
-  </a-entity>
+  </a-entity> -->
 
 <!-- <a-entity
 laser-controls="hand: right"
