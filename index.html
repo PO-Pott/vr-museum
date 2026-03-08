@@ -83,6 +83,17 @@ material="color:#dff6ff; opacity:0.25; transparent:true">
 <a-light type="spot" position="-3 3 4" rotation="-60 180 0" angle="30" intensity="1"></a-light>
 <a-light type="spot" position="3 3 4" rotation="-60 180 0" angle="30" intensity="1"></a-light>
 
+<!-- Navigation mesh -->
+<a-plane
+id="navmesh"
+class="teleport"
+rotation="-90 0 0"
+width="20"
+height="20"
+color="#00ff00"
+opacity="0.2">
+</a-plane>
+
 <!-- Kamera Rig -->
 
 <a-entity id="rig" movement-controls="speed: 0.15">
@@ -90,11 +101,15 @@ material="color:#dff6ff; opacity:0.25; transparent:true">
 <a-entity camera position="0 1.6 3" look-controls wasd-controls></a-entity>
 
 <a-entity
-oculus-touch-controls="hand: left">
+laser-controls="hand: left"
+raycaster="objects: .teleport"
+teleport-controls="cameraRig: #rig; teleportOrigin: #rig"; button: trigger>
 </a-entity>
 
 <a-entity
-oculus-touch-controls="hand: right">
+laser-controls="hand: right"
+raycaster="objects: .teleport"
+teleport-controls="cameraRig: #rig; teleportOrigin: #rig"; button: trigger>
 </a-entity>
 
 </a-entity>
