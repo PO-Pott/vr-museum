@@ -87,6 +87,7 @@ material="color:#dff6ff; opacity:0.25; transparent:true">
 
 <a-plane
 id="navmesh"
+class="teleport"
 rotation="-90 0 0"
 width="20"
 height="20"
@@ -102,13 +103,13 @@ opacity="0.2">
 
 <a-entity
 laser-controls="hand: left"
-raycaster="objects: #navmesh"
+raycaster="objects: .teleport"
 teleport-controls="cameraRig: #rig; teleportOrigin: #rig">
 </a-entity>
 
 <a-entity
 laser-controls="hand: right"
-raycaster="objects: #navmesh"
+raycaster="objects: .teleport"
 teleport-controls="cameraRig: #rig; teleportOrigin: #rig">
 </a-entity>
 
