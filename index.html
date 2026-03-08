@@ -22,8 +22,8 @@
   <a-light type="ambient" intensity="0.7"></a-light>
   <a-light type="directional" color="#ffffff" intensity="0.5" position="0 10 0"></a-light>
 
-  <!-- Boden -->
-  <a-plane rotation="-90 0 0" width="20" height="20" color="#5a3e2b"></a-plane>
+  <!-- Boden rev. -->
+ <a-plane rotation="-90 0 0" width="20" height="20" color="#8b6f47"></a-plane>
 
   <!-- Wände -->
   <a-box position="0 2 -6" width="12" height="4" depth="0.2" color="#dddddd"></a-box>
@@ -31,9 +31,11 @@
   <a-box position="-6 2 0" width="0.2" height="4" depth="12" color="#cccccc"></a-box>
   <a-box position="6 2 0" width="0.2" height="4" depth="12" color="#eeeeee"></a-box>
 
-  <!-- Glasdach -->
-  <a-box position="0 4 0" width="12" height="0.1" depth="12" 
-         color="#aeefff" opacity="0.3" material="roughness:0.1; metalness:0"></a-box>
+  <!-- Glasdach rev. -->
+  <a-box position="0 4 0" width="12" height="0.05" depth="12"
+       color="#dff6ff" opacity="0.25"
+       material="transparent:true; roughness:0.05; metalness:0">
+  </a-box>
 
   <!-- Bilder + Rahmen -->
   <a-entity position="-3 2 -5.9">
@@ -67,18 +69,26 @@
   <a-light type="spot" position="3 3 4" rotation="-45 180 0" angle="30" intensity="1"></a-light>
 
   <!-- Teleport-Fläche -->
-  <a-plane id="navmesh" rotation="-90 0 0" width="20" height="20" visible="false"></a-plane>
+  <a-plane id="navmesh" rotation="-90 0 0" width="20" height="20" color="#00FF00" opacity="0.2"></a-plane>
 
   <!-- Teleport Kamera Rig -->
-  <a-entity id="rig" movement-controls="constrainToNavMesh: true">
-    <a-camera position="0 1.6 3" look-controls></a-camera>
-    <a-entity id="leftHand" hand-controls="hand: left" 
-              teleport-controls="button: trigger; collisionEntities: #navmesh; cameraRig: #rig">
-    </a-entity>
-    <a-entity id="rightHand" hand-controls="hand: right" 
-              teleport-controls="button: trigger; collisionEntities: #navmesh; cameraRig: #rig">
-    </a-entity>
+  <a-entity id="rig" position="0 0 3">
+
+  <a-camera position="0 1.6 0"></a-camera>
+
+  <a-entity
+    laser-controls="hand: left"
+    raycaster="objects: #navmesh"
+    teleport-controls="cameraRig: #rig; teleportOrigin: #rig; button: trigger">
   </a-entity>
+
+  <a-entity
+    laser-controls="hand: right"
+    raycaster="objects: #navmesh"
+    teleport-controls="cameraRig: #rig; teleportOrigin: #rig; button: trigger">
+  </a-entity>
+
+</a-entity>
 
 </a-scene>
 </body>
